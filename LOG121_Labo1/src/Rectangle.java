@@ -9,8 +9,8 @@ import java.awt.Point;
  * @date 2017/05/31
  */
 public class Rectangle extends Forme{
-	public Rectangle(Point pos, Dimension dim){
-		super(pos,dim);
+	public Rectangle(int id, Point pos, Dimension dim){
+		super(id, pos,dim);
 		
 		if(dim.width==dim.height){
 			col = rouge;

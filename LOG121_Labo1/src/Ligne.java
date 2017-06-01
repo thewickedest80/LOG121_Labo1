@@ -8,8 +8,8 @@ import java.awt.Point;
  * @date 2017/05/31
  */
 public class Ligne extends Forme{
-	public Ligne(Point pos, Dimension dim){
-		super(pos,dim);
+	public Ligne(int id, Point pos, Dimension dim){
+		super(id, pos,dim);
 		col = orange;
 	}
 	@Override

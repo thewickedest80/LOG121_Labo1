@@ -10,6 +10,7 @@ import java.awt.Point;
  */
 public abstract class Forme {
 	
+	protected int id;
 	protected Point pos;
 	protected Dimension dim;
 	protected Color col;
@@ -20,7 +21,8 @@ public abstract class Forme {
 	protected Color jaune = new Color(255,252,52);
 	protected Color orange = new Color(255,180,100);
 	
-	public Forme(Point pos, Dimension dim){
+	public Forme(int id, Point pos, Dimension dim){
+		this.id = id;
 		this.pos = pos;
 		this.dim = dim;
 	}

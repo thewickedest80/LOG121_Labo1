@@ -49,7 +49,7 @@ public class FenetreFormes extends JComponent{
 	@Override 
 	public void paintComponent(Graphics g){
 		
-		for(int i=0; i<fileFormes.getLength(); i++){
+		for(int i=fileFormes.getLength()-1; i>=0; i--){
 			Forme f = fileFormes.get(i);
 			f.dessiner(g);
 		}

@@ -1,3 +1,5 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Decomposeur {
 	/**
@@ -15,9 +17,17 @@ public class Decomposeur {
 	private int height;
 	
 	public String[] decomposerString(String s){
+		/*
+		 * tab[0] id
+		 * tab[1] type
+		 * tab[2] posX
+		 * tab[3] posY
+		 * tab[4] width
+		 * tab[5] height
+		 */
 		
 		String[] tab = new String[6];
-		String[] elems = s.split(" ");
+		String[] elems = split(s, " ");
 		
 		id = elems[0];
 		type = elems[1].substring(1, elems[1].length()-1);
@@ -61,5 +71,59 @@ public class Decomposeur {
 		}
 		
 		return tab;
+	}
+	/**
+	 * Sert à séparer une chaine selon une deuxième chaine séparatrice.
+	 * Donne le même résultat que la méthode String.split(s)
+	 * 
+	 * Fonctionnement: L'expression régulière permet de trouver la
+	 * première sous-chaine se terminant par le séparateur
+	 * spécifié (e.g., un espace). On place ensuite le curseur à la
+	 * fin de cette sous-chaine et on effectue la recherche à nouveau. À
+	 * chaque itération, on ajoute la nouvelle sous-chaine dans
+	 * un tableau qu'on allonge d'un élément. 
+	 * 
+	 * @param String à séparer
+	 * @param String séparatrice
+	 * @return String[] contenant les résultats
+	 */
+	private String[] split(String s, String d){
+		
+		//initialisation du tableau à retourner
+		String[] t = new String[0];
+		
+		Pattern p = Pattern.compile("([^"+d+"]*)");
+		Matcher m = p.matcher(s);
+		
+		int curseur = 0;
+		
+		while(curseur<s.length()){
+			
+			/*
+			 * Comparer l'expression régulière à la chaîne à partir
+			 * de l'index spécifié en paramètre (le curseur)
+			 */
+			m.find(curseur);
+			
+			/*
+			 * créer un nouveau tableau avec un élément de plus,
+			 * copier l'acien tableau dans le nouveau 
+			 */
+			String[] tmp = t;
+			t = new String[tmp.length+1];
+			for(int i = 0; i<tmp.length; i++){
+				t[i] = tmp[i];
+			}
+			// ajouter la sous-chainee trouvée au tableau
+			t[t.length-1] = m.group(1);
+			/*
+			 * pointer le curseur vers l'index correspondant à la
+			 * fin de la sous-chaine
+			 */
+			curseur+=(m.group(1).length()+1);
+
+		}
+		
+		return t;
 	}
 }
