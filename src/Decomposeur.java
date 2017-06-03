@@ -16,6 +16,8 @@ public class Decomposeur {
 	private int width;
 	private int height;
 	
+	private final int NB_ATTRIBUTS = 6;
+	
 	public String[] decomposerString(String s){
 		/*
 		 * tab[0] id
@@ -26,12 +28,15 @@ public class Decomposeur {
 		 * tab[5] height
 		 */
 		
-		String[] tab = new String[6];
+		//Tableau qui sera retourné
+		String[] tab = new String[NB_ATTRIBUTS];
+		//Tableau dans lequel on ajoute le contenu séparé de la chaine reçue en paramètre
 		String[] elems = split(s, " ");
 		
 		id = elems[0];
 		type = elems[1].substring(1, elems[1].length()-1);
 
+		//Calcul des attributs de position et dimension selon le type de forme
 		switch (type){
 			case "CARRE": case "RECTANGLE":
 				posX = Integer.parseInt(elems[2]);
@@ -59,6 +64,8 @@ public class Decomposeur {
 		tab[0] = id;
 		tab[1] = type;
 		
+		//On assigne les valeurs dans le tableau qui sera retourné. Si la forme est de type "Ligne", 
+		//les attributs restent inchangés.
 		if(type=="LIGNE"){
 			for(int i = 0;i<tab.length; i++){
 				tab[i] = elems[i];
@@ -77,11 +84,11 @@ public class Decomposeur {
 	 * Donne le même résultat que la méthode String.split(s)
 	 * 
 	 * Fonctionnement: L'expression régulière permet de trouver la
-	 * première sous-chaine se terminant par le séparateur
-	 * spécifié (e.g., un espace). On place ensuite le curseur à la
-	 * fin de cette sous-chaine et on effectue la recherche à nouveau. À
-	 * chaque itération, on ajoute la nouvelle sous-chaine dans
-	 * un tableau qu'on allonge d'un élément. 
+	 * première sous-chaine se terminant par le séparateur spécifié
+	 * (e.g., un espace). On place ensuite le curseur à la fin de
+	 * cette sous-chaine et on effectue la recherche à nouveau. À
+	 * chaque itération, on ajoute la nouvelle sous-chaine dans un
+	 * tableau qu'on allonge d'un élément. 
 	 * 
 	 * @param String à séparer
 	 * @param String séparatrice
@@ -96,7 +103,6 @@ public class Decomposeur {
 		Matcher m = p.matcher(s);
 		
 		int curseur = 0;
-		
 		while(curseur<s.length()){
 			
 			/*
@@ -114,7 +120,7 @@ public class Decomposeur {
 			for(int i = 0; i<tmp.length; i++){
 				t[i] = tmp[i];
 			}
-			// ajouter la sous-chainee trouvée au tableau
+			// ajouter au tableau la sous-chainee trouvée
 			t[t.length-1] = m.group(1);
 			/*
 			 * pointer le curseur vers l'index correspondant à la

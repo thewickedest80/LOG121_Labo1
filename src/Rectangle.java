@@ -12,6 +12,8 @@ public class Rectangle extends Forme{
 	public Rectangle(int id, Point pos, Dimension dim){
 		super(id, pos,dim);
 		
+		//Si les dimensions du rectangle sont égales, on lui assigne une couleur différente,
+		//afin de différencier les carrés des rectangles.
 		if(dim.width==dim.height){
 			col = rouge;
 		}else{

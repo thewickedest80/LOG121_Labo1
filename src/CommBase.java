@@ -18,6 +18,7 @@ import java.net.Socket;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 
 /**
@@ -61,7 +62,8 @@ public class CommBase {
 	}
 	
 	/**
-	 * CrÃ©er le nÃ©cessaire pour la communication avec le serveur
+	 * Fonction qui lance et établit une connexion avec le serveur de formes. L'utilisateur
+	 * sera demandé d'entrer les informations nécessaires.
 	 */
 	protected void creerCommunication(){		
 		// Crée un fil d'exécution parallèle au fil courant,
@@ -73,22 +75,32 @@ public class CommBase {
 				//la string obtenue par la méthode GET
 				String sForme;
 				
-				Runtime rt = Runtime.getRuntime();
-				rt.exec("java -jar ./ServeurForme.jar -port 10000");
+				//obtenir le nom d'hote et # de port et les mettre dans un tableau
+				String inputBox = JOptionPane.showInputDialog(
+						"Entrez un nom d'hote et un # de port, séparés par \":\"", "localhost:10000");
+				String[] nomConnexion = inputBox.split(":");
+				int numPort = Integer.parseInt(nomConnexion[1]);
 				
-				final int numPort = 10000;
-				Socket socket = new Socket("localhost", numPort);
+				//Lancer le serveur
+				Runtime rt = Runtime.getRuntime();
+				rt.exec("java -jar ./ServeurForme.jar -port "+numPort);
+				
+				//Création du socket, du reader et du writer.
+				Socket socket = new Socket(nomConnexion[0], numPort);				
 				BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 				PrintWriter out = new PrintWriter(socket.getOutputStream(), true);				
 				
+				//Boucle pour exécuterdes requetes
 				while(true){
-					
+					//intervalle entre chaque requete
 					Thread.sleep(DELAI);
+					//Requete
 					out.println("GET");
+					//Lire la ligne
 					reader.readLine();
 					sForme = reader.readLine();
 					
- 					//La mÃ©thode suivante alerte l'observateur 
+ 					//alerterl'observateur
 					if(listener!=null)
 					   firePropertyChange("ENVOIE-TEST", null, (Object) (sForme)); 
 				}
@@ -101,7 +113,7 @@ public class CommBase {
 	}
 	
 	/**
-	 * @return si le fil d'exÃ©cution parallÃ¨le est actif
+	 * @return si le fil d'exécution en parallele est actif
 	 */
 	public boolean isActif(){
 		return isActif;

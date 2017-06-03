@@ -12,6 +12,8 @@ public class Ovale extends Forme{
 	public Ovale(int id, Point pos, Dimension dim){
 		super(id, pos,dim);
 		
+		//Si les dimensions de l'ellipse sont égales, on lui assigne une couleur différente,
+		//afin de différencier les cercles des l'ellipses.
 		if(dim.width==dim.height){
 			col = bleu;
 		}else{
