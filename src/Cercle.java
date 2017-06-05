@@ -2,16 +2,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
-/**
- * cette classe dessine une ellipse
- * 
- * @author Louis Raymond-Poirier
- * @date 2017/05/31
- */
-public class Ovale extends Forme{
-	public Ovale(int id, Point pos, Dimension dim){
+
+public class Cercle extends Forme{
+	public Cercle(int id, Point pos, Dimension dim){
 		super(id, pos,dim);
-		col = vert;
+		col = bleu;
 	}
 	@Override
 	public void dessiner(Graphics g){
@@ -23,3 +18,5 @@ public class Ovale extends Forme{
 	}
 
 }
+
+

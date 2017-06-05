@@ -2,16 +2,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
-/**
- * cette classe dessine un rectangle
- * 
- * @author Louis Raymond-Poirier
- * @date 2017/05/31
- */
-public class Rectangle extends Forme{
-	public Rectangle(int id, Point pos, Dimension dim){
+
+public class Carre extends Forme{
+	public Carre(int id, Point pos, Dimension dim){
 		super(id, pos,dim);
-		col = jaune;
+		col = rouge;
 	}
 	@Override
 	public void dessiner(Graphics g){

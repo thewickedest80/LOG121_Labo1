@@ -1,5 +1,6 @@
 import java.awt.Dimension;
 import java.awt.Point;
+
 import ca.etsmtl.log.util.IDLogger;
 /**
  * Cette classe crée des formes à partir d'une chaine de caractère
@@ -8,7 +9,7 @@ import ca.etsmtl.log.util.IDLogger;
  * @date 2017/05/31
  */
 public class CreateurFormes {
-
+	
 	private Decomposeur decomposeur;
 	private IDLogger logger;
 	
@@ -34,8 +35,8 @@ public class CreateurFormes {
 		 * tabString[4] width
 		 * tabString[5] height
 		 */
-		String type = tabString[1];
 		
+		String type = tabString[1];
 		int id = Integer.parseInt(tabString[0]);
 		logger.logID(id);
 		Point pos = new Point(Integer.parseInt(tabString[2]),Integer.parseInt(tabString[3]));
@@ -44,10 +45,16 @@ public class CreateurFormes {
 		Forme forme = null;
 		
 		switch (type){
-		case "CARRE": case "RECTANGLE":
+		case "CARRE": 
+			forme = new Carre(id, pos, dim);
+			break;
+		case "RECTANGLE":
 			forme = new Rectangle(id, pos, dim);
 			break;
-		case "CERCLE": case "OVALE":
+		case "CERCLE": 
+			forme = new Cercle(id, pos, dim);
+			break;
+		case "OVALE":
 			forme = new Ovale(id, pos, dim);
 			break;
 		case "LIGNE":

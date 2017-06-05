@@ -70,7 +70,6 @@ public class CommBase {
 		threadComm = new SwingWorker(){
 			@Override
 			protected Object doInBackground() throws Exception {
-				System.out.println("Le fils d'execution parallele est lance");
 				
 				//la string obtenue par la méthode GET
 				String sForme;
@@ -84,6 +83,8 @@ public class CommBase {
 				//Lancer le serveur
 				Runtime rt = Runtime.getRuntime();
 				rt.exec("java -jar ./ServeurForme.jar -port "+numPort);
+				
+				System.out.println("Le fils d'execution parallele est lance");
 				
 				//Création du socket, du reader et du writer.
 				Socket socket = new Socket(nomConnexion[0], numPort);				
