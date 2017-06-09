@@ -37,8 +37,6 @@ public class MenuFenetre extends JMenuBar{
 	private static final char MENU_FICHIER_QUITTER_TOUCHE_RACC = KeyEvent.VK_Q;
 	private static final int  MENU_FICHIER_OBTENIRFORMES_TOUCHE_MASK = ActionEvent.CTRL_MASK;
 	private static final char MENU_FICHIER_OBTENIRFORMES_TOUCHE_RACC = KeyEvent.VK_F;
-//	private static final int  MENU_ORDRE_TOUCHE_MASK = ActionEvent.CTRL_MASK;
-//	private static final char MENU_ORDRE_TOUCHE_RACC = KeyEvent.VK_O;
 	private static final int  MENU_ORDRE_NSEQ_CROI_TOUCHE_MASK = ActionEvent.CTRL_MASK;
 	private static final char MENU_ORDRE_NSEQ_CROI_TOUCHE_RACC = KeyEvent.VK_1;
 	private static final int  MENU_ORDRE_NSEQ_DECROI_TOUCHE_MASK = ActionEvent.CTRL_MASK;
@@ -170,7 +168,9 @@ public class MenuFenetre extends JMenuBar{
 		});
 		add(menu);
 	}
-	
+	/**
+	 * Créer le menu "Ordre".
+	 */
 	protected void addMenuOrdre(){
 		JMenu menu = creerJRadioMenu(MENU_ORDRE_TITRE, new String[] { MENU_ORDRE_NSEQ_CROI, 
 				MENU_ORDRE_NSEQ_DECROI, 
@@ -215,6 +215,8 @@ public class MenuFenetre extends JMenuBar{
 				//Tirer par la distance maximale entre deux points de la forme
 			}
 		});
+		
+		
 		menu.getItem(0).setAccelerator(
 				KeyStroke.getKeyStroke(MENU_ORDRE_NSEQ_CROI_TOUCHE_RACC,
 						MENU_ORDRE_NSEQ_CROI_TOUCHE_MASK));
@@ -261,10 +263,16 @@ public class MenuFenetre extends JMenuBar{
         }
         return menu;
    }
-	
+	/**
+	 * Créer un élément de menu (JRadioButtonMenuItem) à partir d'un champs principal et ses éléments
+	 * pour le menu "Ordre".
+	 * @param titleKey champs principal
+	 * @param itemKeys éléments
+	 * @return le menu
+	 */
 	private static JMenu creerJRadioMenu(String titleKey,String[] itemKeys) {
         JMenu menu = new JMenu(LangueConfig.getResource(titleKey));
-        ButtonGroup group = new ButtonGroup();
+        ButtonGroup group = new ButtonGroup(); //Permet la sélection unique d'un item dans le menu "Ordre".
         for(int i=0; i < itemKeys.length; ++i) {
            JRadioButtonMenuItem jradio = new JRadioButtonMenuItem(LangueConfig.getResource(itemKeys[i]));
            group.add(jradio);
