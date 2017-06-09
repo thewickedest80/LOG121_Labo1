@@ -43,6 +43,16 @@ public class MenuFenetre extends JMenuBar{
 	private static final char MENU_ORDRE_NSEQ_CROI_TOUCHE_RACC = KeyEvent.VK_1;
 	private static final int  MENU_ORDRE_NSEQ_DECROI_TOUCHE_MASK = ActionEvent.CTRL_MASK;
 	private static final char MENU_ORDRE_NSEQ_DECROI_TOUCHE_RACC = KeyEvent.VK_2;
+	private static final int  MENU_ORDRE_AIRE_CROI_TOUCHE_MASK = ActionEvent.CTRL_MASK;
+	private static final char MENU_ORDRE_AIRE_CROI_TOUCHE_RACC = KeyEvent.VK_3;
+	private static final int  MENU_ORDRE_AIRE_DECROI_TOUCHE_MASK = ActionEvent.CTRL_MASK;
+	private static final char MENU_ORDRE_AIRE_DECROI_TOUCHE_RACC = KeyEvent.VK_4;
+	private static final int  MENU_ORDRE_TYPE_FORME_CROI_TOUCHE_MASK = ActionEvent.CTRL_MASK;
+	private static final char MENU_ORDRE_TYPE_FORME_CROI_TOUCHE_RACC = KeyEvent.VK_5;
+	private static final int  MENU_ORDRE_TYPE_FORME_DECROI_TOUCHE_MASK = ActionEvent.CTRL_MASK;
+	private static final char MENU_ORDRE_TYPE_FORME_DECROI_TOUCHE_RACC = KeyEvent.VK_6;
+	private static final int  MENU_ORDRE_TYPE_DISTANCE_TOUCHE_MASK = ActionEvent.CTRL_MASK;
+	private static final char MENU_ORDRE_TYPE_DISTANCE_TOUCHE_RACC = KeyEvent.VK_7;
 	private static final String
 			MENU_FICHIER_TITRE = "app.frame.menus.file.title",
 			MENU_FICHIER_QUITTER = "app.frame.menus.file.exit",
@@ -53,11 +63,11 @@ public class MenuFenetre extends JMenuBar{
 			MENU_ORDRE_TITRE="app.frame.menus.ordre.title",
 			MENU_ORDRE_NSEQ_CROI="app.frame.menus.ordre.nseq_croissant",
 			MENU_ORDRE_NSEQ_DECROI="app.frame.menus.ordre.nseq_decroissant",
-//			app.frame.menus.ordre.aire_croissant=Aire de forme (croissant)
-//			app.frame.menus.ordre.aire_decroissant=Aire de forme (décroissant)
-//			app.frame.menus.ordre.type_forme=Type de forme
-//			app.frame.menus.ordre.type_forme_inverse=Type de forme (inversé)
-//			app.frame.menus.ordre.distance=Distance maximale entre deux points de la forme (croissante)
+			MENU_ORDRE_AIRE_CROI="app.frame.menus.ordre.aire_croissant",
+			MENU_ORDRE_AIRE_DECROI="app.frame.menus.ordre.aire_decroissant",
+			MENU_ORDRE_TYPE_FORME_CROI="app.frame.menus.ordre.type_forme",
+			MENU_ORDRE_TYPE_FORME_DECROI="app.frame.menus.ordre.type_forme_inverse",
+			MENU_ORDRE_TYPE_DISTANCE="app.frame.menus.ordre.distance",
 			MENU_AIDE_TITRE = "app.frame.menus.help.title",
 			MENU_AIDE_PROPOS = "app.frame.menus.help.about";
 	private static final String MESSAGE_DIALOGUE_A_PROPOS = "app.frame.dialog.about";  
@@ -72,8 +82,8 @@ public class MenuFenetre extends JMenuBar{
 	 */
 	public MenuFenetre(CommBase comm) {
 		this.comm = comm;
-		addMenuDessiner();
 		addMenuFichier();
+		addMenuDessiner();
 		addMenuOrdre();
 		addMenuAide();
 	}
@@ -162,7 +172,13 @@ public class MenuFenetre extends JMenuBar{
 	}
 	
 	protected void addMenuOrdre(){
-		JMenu menu = creerJRadioMenu(MENU_ORDRE_TITRE, new String[] { MENU_ORDRE_NSEQ_CROI, MENU_ORDRE_NSEQ_DECROI });
+		JMenu menu = creerJRadioMenu(MENU_ORDRE_TITRE, new String[] { MENU_ORDRE_NSEQ_CROI, 
+				MENU_ORDRE_NSEQ_DECROI, 
+				MENU_ORDRE_AIRE_CROI, 
+				MENU_ORDRE_AIRE_DECROI,
+				MENU_ORDRE_TYPE_FORME_CROI,
+				MENU_ORDRE_TYPE_FORME_DECROI,
+				MENU_ORDRE_TYPE_DISTANCE});
 		
 		menu.getItem(0).addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -174,13 +190,52 @@ public class MenuFenetre extends JMenuBar{
 				//Trier les formes en ce basant sur les numéros de séquence (décroissant)
 			}
 		});
-		
+		menu.getItem(2).addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//Trier les formes en ce basant sur l'aire de la forme (croissant)
+			}
+		});
+		menu.getItem(3).addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//Trier les formes en ce basant sur l'aire de la forme (décroissant)
+			}
+		});
+		menu.getItem(4).addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//Trier les formes en ce basant le type de forme (carré, rectangle, cercle, ovale, ligne)
+			}
+		});
+		menu.getItem(5).addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//Trier les formes en ce basant le type de forme (ligne, ovale, cercle, rectangle, carré)
+			}
+		});
+		menu.getItem(6).addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//Tirer par la distance maximale entre deux points de la forme
+			}
+		});
 		menu.getItem(0).setAccelerator(
 				KeyStroke.getKeyStroke(MENU_ORDRE_NSEQ_CROI_TOUCHE_RACC,
 						MENU_ORDRE_NSEQ_CROI_TOUCHE_MASK));
 		menu.getItem(1).setAccelerator(
 				KeyStroke.getKeyStroke(MENU_ORDRE_NSEQ_DECROI_TOUCHE_RACC,
 						MENU_ORDRE_NSEQ_DECROI_TOUCHE_MASK));
+		menu.getItem(2).setAccelerator(
+				KeyStroke.getKeyStroke(MENU_ORDRE_AIRE_CROI_TOUCHE_RACC,
+						MENU_ORDRE_AIRE_CROI_TOUCHE_MASK));
+		menu.getItem(3).setAccelerator(
+				KeyStroke.getKeyStroke(MENU_ORDRE_AIRE_DECROI_TOUCHE_RACC,
+						MENU_ORDRE_AIRE_DECROI_TOUCHE_MASK));
+		menu.getItem(4).setAccelerator(
+				KeyStroke.getKeyStroke(MENU_ORDRE_TYPE_FORME_CROI_TOUCHE_RACC,
+						MENU_ORDRE_TYPE_FORME_CROI_TOUCHE_MASK));
+		menu.getItem(5).setAccelerator(
+				KeyStroke.getKeyStroke(MENU_ORDRE_TYPE_FORME_DECROI_TOUCHE_RACC,
+						MENU_ORDRE_TYPE_FORME_DECROI_TOUCHE_MASK));
+		menu.getItem(6).setAccelerator(
+				KeyStroke.getKeyStroke(MENU_ORDRE_TYPE_DISTANCE_TOUCHE_RACC,
+						MENU_ORDRE_TYPE_DISTANCE_TOUCHE_MASK));
 		add(menu);
 
 	}
