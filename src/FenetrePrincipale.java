@@ -18,7 +18,7 @@ import java.beans.PropertyChangeListener;
 import javax.swing.JFrame;
  
 /**
- * Cette classe représente la fenêtre principale de l'application 
+ * Cette classe reprï¿½sente la fenï¿½tre principale de l'application 
  * @authors Patrice Boucher, Louis Raymond-Poirier
  * @date 2017/05/31
  */
@@ -43,7 +43,7 @@ public class FenetrePrincipale extends JFrame implements PropertyChangeListener{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //... Ã  rÃ©viser selon le comportement que vous dÃ©sirez ...
 	}
 	
-	// Appelé lorsque le sujet lance "firePropertyChanger"
+	// Appelï¿½ lorsque le sujet lance "firePropertyChanger"
 	@Override
 	public void propertyChange(PropertyChangeEvent arg0) {
 		

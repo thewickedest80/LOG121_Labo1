@@ -17,4 +17,17 @@ public class Ligne extends Forme{
 		g.setColor(col);
 		g.drawLine(pos.x,pos.y,dim.width,dim.height);
 	}
+	@Override
+	public double getAire() {
+		// TODO Auto-generated method stub
+		aire = dim.width * dim.height;
+		return aire; //aire d'une ligne
+	}
+	@Override
+	public double getDistance() {
+		// TODO Auto-generated method stub
+		distance = Math.sqrt(dim.height * dim.height + dim.width * dim.width);
+		return distance;
+	}
+	
 }

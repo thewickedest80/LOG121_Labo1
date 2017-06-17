@@ -18,7 +18,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 import javax.swing.JComponent;
 
 /**
- * Cette fenêtre gère l'affichage des formes 
+ * Cette fenï¿½tre gï¿½re l'affichage des formes 
  * @author Patrice Boucher
  * @author Louis Raymond-Poirier
  * @date 2017/05/31
@@ -65,7 +65,7 @@ public class FenetreFormes extends JComponent{
 		return dimension;
 	}
 	/**
-	 * Reçoit une chaine de caractère, la transforme en forme puis l'ajoute à la file de formes.
+	 * Reï¿½oit une chaine de caractï¿½re, la transforme en forme puis l'ajoute ï¿½ la file de formes.
 	 * 
 	 * @param s
 	 */

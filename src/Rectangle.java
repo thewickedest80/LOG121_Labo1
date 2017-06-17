@@ -21,4 +21,15 @@ public class Rectangle extends Forme{
 		g.setColor(Color.BLACK);
 		g.drawRect(pos.x,pos.y,dim.width,dim.height);
 	}
+	@Override
+	public double getAire(){
+		aire = dim.width * dim.height;
+		return aire;	
+	}
+	@Override
+	public double getDistance() {
+		// TODO Auto-generated method stub
+		distance = Math.sqrt(dim.height * dim.height + dim.width * dim.width);
+		return distance;
+	}
 }

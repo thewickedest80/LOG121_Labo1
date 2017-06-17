@@ -3,7 +3,7 @@ import java.awt.Point;
 
 import ca.etsmtl.log.util.IDLogger;
 /**
- * Cette classe crée des formes à partir d'une chaine de caractère
+ * Cette classe crï¿½e des formes ï¿½ partir d'une chaine de caractï¿½re
  * 
  * @author Louis Raymond-Poirier
  * @date 2017/05/31
@@ -18,7 +18,7 @@ public class CreateurFormes {
 		logger = IDLogger.getInstance();
 	}
 	/**
-	 * Décompose la chaine reçue puis crée la forme appropriée
+	 * Dï¿½compose la chaine reï¿½ue puis crï¿½e la forme appropriï¿½e
 	 * 
 	 * @param string
 	 * @return forme

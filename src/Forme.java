@@ -2,8 +2,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.math.*;
 /**
- * Cette classe abstraite sert de gabarit pour des formes spécialisées
+ * Cette classe abstraite sert de gabarit pour des formes spï¿½cialisï¿½es
  * 
  * @author Louis Raymond-Poirier
  * @date 2017/05/31
@@ -14,6 +15,8 @@ public abstract class Forme {
 	protected Point pos;
 	protected Dimension dim;
 	protected Color col;
+	protected double aire;
+	protected double distance;
 	
 	protected Color rouge = new Color(255,52,52);
 	protected Color bleu = new Color(52,153,255);
@@ -27,4 +30,7 @@ public abstract class Forme {
 		this.dim = dim;
 	}
 	public abstract void dessiner(Graphics g);
+	public abstract double getAire();
+	public abstract double getDistance();
+	
 }

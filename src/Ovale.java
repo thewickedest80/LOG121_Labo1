@@ -9,6 +9,9 @@ import java.awt.Point;
  * @date 2017/05/31
  */
 public class Ovale extends Forme{
+	
+	protected static double pi = 3.14;
+	
 	public Ovale(int id, Point pos, Dimension dim){
 		super(id, pos,dim);
 		col = vert;
@@ -20,6 +23,18 @@ public class Ovale extends Forme{
 		
 		g.setColor(Color.BLACK);
 		g.drawOval(pos.x,pos.y,dim.width,dim.height);
+	}
+	@Override
+	public double getAire() {
+		// TODO Auto-generated method stub
+		aire = pi * dim.width * dim.height;
+		return aire;
+	}
+	@Override
+	public double getDistance() {
+		// TODO Auto-generated method stub
+		aire = 2 * pi * dim.width;
+		return distance;
 	}
 
 }

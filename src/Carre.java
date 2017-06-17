@@ -3,7 +3,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 
-public class Carre extends Forme{
+public class Carre extends Rectangle{
 	public Carre(int id, Point pos, Dimension dim){
 		super(id, pos,dim);
 		col = rouge;
@@ -16,4 +16,5 @@ public class Carre extends Forme{
 		g.setColor(Color.BLACK);
 		g.drawRect(pos.x,pos.y,dim.width,dim.height);
 	}
+
 }
